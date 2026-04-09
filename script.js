@@ -13,6 +13,12 @@ const loadPreferences = () => {
 }
 
 colorPicker.addEventListener('input', (e) => {
+    const color = e.target.value;   //capturar o movimento do mouse
+    //mudar o valor da variavel no CSS, com o valor capturado
+    document.documentElement.style.setProperty('--primary-color', color)
+
+    //inserir a chave(primaryColor) e o valor(color) no local storage
+    localStorage.setItem('primaryColor', color);
 
 });
 
