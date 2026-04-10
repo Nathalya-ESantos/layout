@@ -1,35 +1,61 @@
-const colorPicker = document.querySelector('#color-picker');
-const Fontselect = document.querySelector('#font-select');
-const themeToggle = document.querySelector('#theme-toggle');
-const articleColorPicker= document.querySelector('#article-color-picker');
-const body = document.querySelector('#body');
-const newArticles = document.querySelector('#.news');
-
+const colorPicker = document.querySelector('#color-picker')
+const fontSelect = document.querySelector('#font-select')
+const themeToggle = document.querySelector('#theme-toggle')
+const articleColorPicker = document.querySelector('#article-color-picker')
+const body = document.querySelector('body')
+const newsArticle= document.querySelector('.news')
 
 const loadPreferences = () => {
     // cor
-    const savedColor = localStorage.getItem('primaryColor');
+    const saveColor = localStorage.getItem('primaryColor');
+    if (saveColor) {
+        document.documentElement.style.setProperty('--primary-color', saveColor)
+        colorPicker.value = saveColor;
+    }
 
-}
+    const saveArticleColor = localStorage.getItem('articleColor');
+    if (saveArticleColor) {
+
+    }
+
+    // const saveArticleColor = localStorage.getItem('articleColor');
+    // if (saveArticleColor) {
+
+
+    const saveTheme = localStorage.getItem('theme');
+    if (saveTheme === 'dark'){
+        body.classList.add('dark');
+        themeToggle.innerHTML = '<span class="material-icons">light_mode</span>'
+    }
+};
 
 colorPicker.addEventListener('input', (e) => {
-    const color = e.target.value;   //capturar o movimento do mouse
-    //mudar o valor da variavel no CSS, com o valor capturado
+    const color = e.target.value;
+    // Mudar o valor da variavel do css, com o valor capturado
     document.documentElement.style.setProperty('--primary-color', color)
-
-    //inserir a chave(primaryColor) e o valor(color) no local storage
-    localStorage.setItem('primaryColor', color);
-
+    // Inserir a chave
+    localStorage.setItem('primaryColor', color)
 });
 
 articleColorPicker.addEventListener('input', (e) => {
-
+    const color = e.target.value;
+    newsArticle.forEach(article => {
+        article.style.backgroundColor = color;
+    });
+    localStorage.setItem('articleColor', color)
 });
 
-Fontselect.addEventListener('change', (e) => {
-
+fontSelect.addEventListener('change', (e) => {
+    const font = e.target.value;
+    document.documentElement.style.setProperty('--font-select', font)
+    localStorage.setItem('fontFamily', font)
 });
 
 themeToggle.addEventListener('click', () => {
-
+    body.classList.toggle('dark');
+    const isDark = body.classList.contains('dark');
+    themeToggle.innerHTML = isDark
+    ? '<span class="material-icons">light_mode</span>'
+    : '<span class="material-icons">light_mode</span>';
+    localStorage.setItem('theme', isDark ? 'dark' : 'ligth');
 });
