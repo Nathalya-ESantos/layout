@@ -1,0 +1,52 @@
+:root {
+  --primary-color-light: #f0f0f0;
+  --secondary-color-light: #ffffff;
+  --text-color-light: #333;
+  --hover-color-light: #ddd;
+  --button-bg-light: #e0e0e0;
+  --button-hover-light: #ccc;
+  --sidebar-bg-light: #ffffff;
+
+  --primary-color-dark: #1e1e1e;
+  --secondary-color-dark: #2e2e2e;
+  --text-color-dark: #f0f0f0;
+  --hover-color-dark: #555;
+  --button-bg-dark: #333;
+  --button-hover-dark: #444;
+  --sidebar-bg-dark: #2e2e2e;
+}
+
+.theme-container{
+margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  display:flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.theme-container.dark{
+ --bg: var(--primary-color-dark);
+  --text: var(--text-color-dark);
+  --sidebar: var(--sidebar-bg-dark);
+  --button: var(--button-bg-dark);
+  --button-hover: var(--button-hover-dark);
+}
+
+
+.menu{
+  background-color: var(--sidebar-bg-light);
+  transition: backgroud-color 0.3s;
+  padding: 20px;
+}
+
+
+.button{
+padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--button);
+  color: var(--text);
+  border-radius: 5px;
+}
+
